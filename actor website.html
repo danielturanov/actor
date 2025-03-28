@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Turanov - Actor Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* styles.css */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(28, 28, 28, 0.95);
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        nav h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e8491d;
+        }
+
+        #hero {
+            background: url('hero.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        #hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 3rem;
+            border-radius: 10px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .hero-content span {
+            color: #e8491d;
+        }
+
+        .hero-content p {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            background: #e8491d;
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #ff5733;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: #1c1c1c;
+        }
+
+        #about, #showreel, #gallery, #resume, #contact {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: #e8491d;
+        }
+
+        #showreel video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        #gallery .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+
+        #gallery img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        #gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        #resume ul {
+            text-align: left;
+            margin-top: 1.5rem;
+            padding-left: 0;
+        }
+
+        #resume li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background: #e8491d;
+            color: #fff;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #ff5733;
+        }
+
+        footer {
+            background: #1c1c1c;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Daniel Turanov</h1>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#showreel">Showreel</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h2>Hi, I'm <span>Daniel Turanov</span></h2>
+            <p>Actor | Performer | Storyteller</p>
+            <a href="#contact" class="btn">Get in Touch</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Hi, I’m Daniel Turanov, an ambitious and passionate actor driven by the art of storytelling. Ever since I first stepped in front of a camera, I’ve been captivated by the magic of transforming words on a page into unforgettable characters. I’m constantly refining my craft, whether it’s through intense character work, perfecting my physicality, or diving deep into emotional nuance.</p>
+    </section>
+
+    <section id="showreel">
+        <h2>Showreel</h2>
+        <video controls>
+            <source src="showreel.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-container">
+            <img src="headshot1.png" alt="Headshot 1">
+            <img src="headshot2.jpg" alt="Headshot 2">
+            <img src="headshot3.jpg" alt="Headshot 3">
+        </div>
+    </section>
+
+    <section id="resume">
+        <h2>Resume</h2>
+        <ul>
+            <li><strong>Film:</strong> Lead role in "In Due Time" - 2025</li>
+			<li><strong>Film:</strong> Support role in "Gambling man" - 2025</li>
+            <li><strong>film:</strong> Lead role in "Blood Bound" - 2024</li>
+            <li><strong>Film:</strong> Lead role in Silence - 2024</li>
+            <li><strong>Film:</strong> Support role in "The Middle" - 2024</li>
+        </ul>
+    </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form action="https://formspree.io/f/xpwpjqae" method="POST" id="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+    <footer>
+        <p>&copy; 2025 Daniel Turanov. All rights reserved.</p>
+    </footer>
+</body>
+</html>
