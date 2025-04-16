@@ -13,13 +13,11 @@
       --light: #f4f4f4;
       --shadow: rgba(0, 0, 0, 0.2);
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--secondary);
@@ -27,7 +25,6 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
     header {
       background: var(--accent);
       position: fixed;
@@ -37,7 +34,6 @@
       padding: 1.2rem 2rem;
       box-shadow: 0 2px 10px var(--shadow);
     }
-
     nav {
       max-width: 1200px;
       margin: auto;
@@ -45,30 +41,25 @@
       justify-content: space-between;
       align-items: center;
     }
-
     nav h1 {
       font-size: 2rem;
       color: var(--primary);
       font-weight: 800;
     }
-
     nav ul {
       display: flex;
       gap: 1.5rem;
       list-style: none;
     }
-
     nav a {
       color: var(--light);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
     }
-
     nav a:hover {
       color: var(--primary);
     }
-
     #hero {
       height: 100vh;
       background: url('hero.jpg') center/cover no-repeat;
@@ -79,7 +70,6 @@
       text-align: center;
       padding: 2rem;
     }
-
     #hero::before {
       content: "";
       position: absolute;
@@ -89,28 +79,23 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
     }
-
     .hero-content {
       position: relative;
       color: white;
       z-index: 2;
       max-width: 800px;
     }
-
     .hero-content h2 {
       font-size: 4rem;
       margin-bottom: 1rem;
     }
-
     .hero-content span {
       color: var(--primary);
     }
-
     .hero-content p {
       font-size: 1.5rem;
       margin-bottom: 2rem;
     }
-
     .btn {
       background: var(--primary);
       color: white;
@@ -122,29 +107,24 @@
       transition: background 0.3s;
       text-decoration: none;
     }
-
     .btn:hover {
       background: #ff6d74;
     }
-
     section {
       padding: 5rem 2rem;
       text-align: center;
     }
-
     h2 {
       font-size: 2.8rem;
       color: var(--primary);
       margin-bottom: 1.5rem;
     }
-
     #about p,
     #resume li {
       max-width: 800px;
       margin: 1rem auto;
       font-size: 1.1rem;
     }
-
     video {
       width: 100%;
       max-width: 800px;
@@ -160,27 +140,53 @@
       margin-top: 2rem;
     }
 
-    .gallery-container img {
-      width: 100%;
+    .gallery-item {
+      background-color: var(--accent);
       border-radius: 12px;
-      transition: transform 0.3s;
-      box-shadow: 0 4px 20px var(--shadow);
+      padding: 0.5rem;
     }
 
-    .gallery-container img:hover {
+    .gallery-item img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      box-shadow: 0 4px 20px var(--shadow);
+      cursor: pointer;
+    }
+
+    .gallery-item img:hover {
       transform: scale(1.05);
     }
 
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .lightbox.active {
+      display: flex;
+    }
     ul {
       padding: 0;
       list-style: none;
     }
-
     #contact form {
       max-width: 600px;
       margin: auto;
     }
-
     input, textarea {
       width: 100%;
       padding: 1rem;
@@ -189,7 +195,6 @@
       border: none;
       font-size: 1rem;
     }
-
     button {
       background: var(--primary);
       color: white;
@@ -199,16 +204,36 @@
       font-size: 1rem;
       cursor: pointer;
     }
-
     button:hover {
       background: #ff6d74;
     }
-
+    .testimonials {
+      margin-top: 2rem;
+      font-style: italic;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
     footer {
       background: var(--accent);
       color: var(--light);
       padding: 1rem;
       text-align: center;
+    }
+	
+    .video-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+
+    .video-wrapper iframe,
+    .video-wrapper video {
+      width: 100%;
+      height: 450px;
+      display: block;
     }
   </style>
 </head>
@@ -241,30 +266,62 @@
 
   <section id="showreel">
     <h2>Showreel</h2>
-    <video controls>
-      <source src="showreel.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+    <div class="video-wrapper">
+      <video controls>
+        <source src="showreel.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <br><br>
+    <h2>Self Tape</h2>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/videoseries?si=8tLQhY55Nv6s1vMh&amp;list=PLoo88lSy2DKPdo-egDAySGc8LS806SUa8"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+      </iframe>
+    </div>
   </section>
 
   <section id="gallery">
     <h2>Gallery</h2>
     <div class="gallery-container">
-      <img src="headshot1.png" alt="Headshot 1" />
-      <img src="headshot2.jpg" alt="Headshot 2" />
-      <img src="headshot3.jpg" alt="Headshot 3" />
+	  <div class="gallery-item"><img src="headshot5.png" alt="Headshot 5" onclick="openLightbox(this.src)" /></div>
+      <div class="gallery-item"><img src="headshot1.png" alt="Headshot 1" onclick="openLightbox(this.src)" /></div>
+      <div class="gallery-item"><img src="headshot2.jpg" alt="Headshot 2" onclick="openLightbox(this.src)" /></div>
+      <div class="gallery-item"><img src="headshot3.jpg" alt="Headshot 3" onclick="openLightbox(this.src)" /></div>
+      <div class="gallery-item"><img src="headshot4.png" alt="Headshot 4" onclick="openLightbox(this.src)" /></div>
+   
+    </div>
+    <div class="lightbox" onclick="this.classList.remove('active')">
+      <img src="" alt="Enlarged Image" />
     </div>
   </section>
 
   <section id="resume">
     <h2>Resume</h2>
+    <a href="DanielTuranovActingResume.pdf" class="btn" download target="_blank">Download My Resume (PDF)</a>
+    <br><br/>
     <ul>
+      <li><strong>Film:</strong> Lead role in "Throwback" - 2025</li>
       <li><strong>Film:</strong> Lead role in "In Due Time" - 2025</li>
       <li><strong>Film:</strong> Support role in "Gambling Man" - 2025</li>
       <li><strong>Film:</strong> Lead role in "Blood Bound" - 2024</li>
       <li><strong>Film:</strong> Lead role in "Silence" - 2024</li>
       <li><strong>Film:</strong> Support role in "The Middle" - 2024</li>
     </ul>
+    <div class="testimonials">
+      <p>"Daniel has a presence that commands the screen."</p>
+      <p>"Incredible range and emotional depth – a true talent."</p>
+      <p>"Working with Daniel was an absolute joy."</p>
+    </div>
+    <br />
+    <p>
+      <a href="https://pro.imdb.com/name/nm17029139" target="_blank">IMDb</a> | 
+      <a href="https://app.castingnetworks.com/talent/profile/251393024" target="_blank">Casting Networks</a> | 
+      <a href="https://www.backstage.com/tal/daniel-turanov/" target="_blank">Backstage</a>
+    </p>
   </section>
 
   <section id="contact">
@@ -280,5 +337,14 @@
   <footer>
     <p>&copy; 2025 Daniel Turanov. All rights reserved.</p>
   </footer>
+
+  <script>
+    function openLightbox(src) {
+      const lightbox = document.querySelector('.lightbox');
+      const img = lightbox.querySelector('img');
+      img.src = src;
+      lightbox.classList.add('active');
+    }
+  </script>
 </body>
 </html>
