@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume | Daniel Turanov</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFB300;
+      --white: #fff;
+      --black: #000;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      position: relative;
+      background-color: var(--bg);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      padding: 2rem;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "Resume";
+      position: absolute;
+      top: 30%; left: -5%;
+      font-size: 10rem;
+      color: rgba(255,255,255,0.07);
+      transform: rotate(-30deg);
+      white-space: nowrap;
+    }
+    svg { position: absolute; width: 0; height: 0; }
+    header h1 {
+      font-size: 3.5rem;
+      filter: url(#wave);
+      margin-bottom: 1rem;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .nav-circle {
+      width: 90px; height: 90px;
+      border: 3px solid var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .nav-circle:hover { transform: scale(1.1) rotate(5deg); }
+    .resume-container {
+      display: grid;
+      grid-template-columns: 1fr 40px 1fr;
+      gap: 2rem;
+      position: relative;
+      padding: 1rem 0;
+    }
+    .resume-container::before {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; left: calc(50% - 2px);
+      width: 4px;
+      background: rgba(255,255,255,0.3);
+    }
+    .resume-item {
+      position: relative;
+      padding: 1rem;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid var(--white);
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+    .resume-item:nth-child(odd) { grid-column: 1; }
+    .resume-item:nth-child(even) { grid-column: 3; }
+    .resume-item::before {
+      content: "";
+      position: absolute;
+      top: 1rem;
+      left: calc(50% - 6px);
+      width: 12px; height: 12px;
+      background: var(--white);
+      border-radius: 50%;
+    }
+    .resume-item h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .resume-item p, .resume-item ul { font-size: 0.9rem; line-height: 1.4; }
+    .resume-item ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+    .section-title {
+      grid-column: 1 / span 3;
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+	
+	/* make all nav links stay white (or inherit) even after visit */
+.nav-circle a:link,
+.nav-circle a:visited {
+  color: inherit;       /* or explicitly “#fff” */
+  text-decoration: none;
+}
+
+/* keep hover/active the same too (optional) */
+.nav-circle a:hover,
+.nav-circle a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root {
+  --accent1: #00F0FF;
+  --accent2: #FF00E0;
+  --white: #fff;
+  --black: #000;
+}
+
+.download-btn {
+  display: inline-block;
+  margin: 1rem 0 2rem;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(45deg, var(--accent1), var(--accent2));
+  color: var(--black);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 2px solid var(--white);
+  border-radius: 16px;
+  box-shadow:
+    0 0 8px var(--accent1),
+    0 0 16px var(--accent2),
+    inset 0 0 4px rgba(255,255,255,0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.download-btn:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 12px var(--accent1),
+    0 0 24px var(--accent2),
+    inset 0 0 6px rgba(255,255,255,0.7);
+}
+
+  </style>
+</head>
+<body>
+  <svg>
+    <filter id="wave">
+      <feTurbulence x="0" y="0" baseFrequency="0.01 0.04" numOctaves="2" result="turb" />
+      <feDisplacementMap in="SourceGraphic" in2="turb" scale="20" />
+    </filter>
+  </svg>
+
+  <header><h1>Daniel Turanov</h1></header>
+<nav class="nav">
+	<div class="nav-circle"><a href="testactingsite.html">Home</a></div>
+    <div class="nav-circle"><a href="headshots.html">Headshots</a></div>
+    <div class="nav-circle"><a href="about.html">About</a></div>
+    <div class="nav-circle"><a href="reel.html">Reel</a></div>
+	<div class="nav-circle"><a href="resume.html">Resume</a></div>
+    <div class="nav-circle"><a href="contact.html">Contact</a></div>
+  </nav>
+
+  <div class="resume-container">
+    <div class="section-title">My Acting Journey</div>
+
+    <div class="resume-item">
+      <h3>Profile</h3>
+      <p>Driven and talented actor with experience in both stage and film acting. Highly passionate and diligent work ethic, a natural team player and people person.</p>
+    </div>
+    <div class="resume-item">
+      <h3>Contact</h3>
+      <p>St. Louis, MO<br>
+      314-616-9842<br>
+      <a href="mailto:danielturanov@gmail.com" style="color: var(--white)">danielturanov@gmail.com</a><br>
+      <a href="https://danielturanov.github.io/actor/" target="_blank" style="color: var(--white)">danielturanov.github.io/actor/</a>
+      </p>
+    </div>
+
+    <div class="resume-item">
+      <h3>Manager</h3>
+      <p>Daniel Wurzbacher<br>
+      <a href="mailto:admin@weareadvent.com" style="color: var(--white)">admin@weareadvent.com</a><br>
+      Los Angeles, CA
+      </p>
+    </div>
+    <div class="resume-item">
+      <h3>Training</h3>
+      <ul>
+        <li>COCA Acting Studio</li>
+        <li>Marquette Acting for Film</li>
+        <li>Improvisation Workshop</li>
+      </ul>
+    </div>
+
+    <div class="resume-item">
+      <h3>Skills</h3>
+      <ul>
+        <li>Fluent in Russian</li>
+        <li>Guitar & Singing</li>
+        <li>Improv & Accents</li>
+        <li>Mixed Martial Arts (Jiu-Jitsu, Kickboxing)</li>
+        <li>Long-Distance Running & Weightlifting</li>
+        <li>Swimming</li>
+        <li>Strong Sales Skills (Transitioning into Real Estate)</li>
+        <li>Fast Reader & Great Memory</li>
+        <li>Highly Articulate</li>
+      </ul>
+    </div>
+    <div class="resume-item">
+      <h3>Film Credits</h3>
+      <ul>
+		<li><strong>Out For Blood</strong> – Lead Role (2025, Dir. J.P. Kilian)</li>
+		<li><strong>Throwback</strong> – Lead Role (2025, Dir. Magdelane)</li>
+        <li><strong>In Due Time</strong> – Lead Role (2025, Dir. George Miki Han)</li>
+        <li><strong>Gambling Man</strong> – Supporting (2025, Dir. J.P. Kilian)</li>
+        <li><strong>Blood Bound</strong> – Lead Role (2024, Dir. Sam Sowerby)</li>
+        <li><strong>Silence</strong> – Lead (2024, Dir. Nathan Domescik)</li>
+        <li><strong>The Middle</strong> – Support (2024, Dir. Owen H.)</li>
+      </ul>
+	  
+	  <a href="Daniel_Turanov_Resume_New.pdf" download class="download-btn">
+  Download Resume
+</a>
+    </div>
+
+  </div>
+</body>
+</html>

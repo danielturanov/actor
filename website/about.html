@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Daniel Turanov</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F364A2;
+      --white: #fff;
+      --black: #000;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      padding: 2rem;
+      text-align: center;
+      line-height: 1.5;
+    }
+    /* Wavy logo filter */
+    svg { position: absolute; width: 0; height: 0; }
+    h1 {
+      font-size: 4rem;
+      filter: url(#wave);
+      margin-bottom: 1rem;
+    }
+    /* Navigation circles */
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .nav-circle {
+      width: 100px;
+      height: 100px;
+      border: 3px solid var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .nav-circle:hover {
+      transform: scale(1.1) rotate(-3deg);
+    }
+    /* Section titles */
+    .section-small {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-large {
+      font-size: 3rem;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    /* Content paragraphs */
+    .content p {
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+    }
+    /* Bottom highlight */
+    .highlight-title {
+      font-size: 3rem;
+      letter-spacing: 0.1rem;
+      margin-bottom: 1.5rem;
+    }
+	
+	/* make all nav links stay white (or inherit) even after visit */
+.nav-circle a:link,
+.nav-circle a:visited {
+  color: inherit;       /* or explicitly “#fff” */
+  text-decoration: none;
+}
+
+/* keep hover/active the same too (optional) */
+.nav-circle a:hover,
+.nav-circle a:active {
+  color: inherit;
+  text-decoration: none;
+}
+  </style>
+</head>
+<body>
+  <!-- SVG filter definition -->
+  <svg>
+    <filter id="wave">
+      <feTurbulence x="0" y="0" baseFrequency="0.01 0.05" numOctaves="3" result="warp" />
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="30" />
+    </filter>
+  </svg>
+
+  <!-- Header with wavy logo text -->
+  <header>
+    <h1>Daniel Turanov</h1>
+  </header>
+
+  <!-- Navigation menu -->
+  <nav class="nav">
+	<div class="nav-circle"><a href="testactingsite.html">Home</a></div>
+    <div class="nav-circle"><a href="headshots.html">Headshots</a></div>
+    <div class="nav-circle"><a href="about.html">About</a></div>
+    <div class="nav-circle"><a href="reel.html">Reel</a></div>
+	<div class="nav-circle"><a href="resume.html">Resume</a></div>
+    <div class="nav-circle"><a href="contact.html">Contact</a></div>
+  </nav>
+
+  <!-- Main About content -->
+  <main class="content">
+    <!-- Intro section -->
+    <div class="intro">
+      <div class="section-small">You may be asking...</div>
+      <div class="section-large">What is Daniel Turanov?</div>
+      <p>Daniel Turanov is an actor, storyteller, and dreamer. From his first high-school monologue to leading roles in short films like <em>Blood Bound</em> and <em>Silence</em>, he’s driven by a passion for bringing characters to life.</p>
+      <p>Currently represented by Advent Management and Phirgun Mair, Daniel balances on-set experience with continuous training in the Stanislavski method. Whether in Chicago, New York, or Los Angeles, he pursues each project with unwavering dedication.</p>
+    </div>
+
+    <!-- What to expect -->
+    <div class="bottom">
+      <div class="section-small">What should you expect to find here?</div>
+      <div class="highlight-title">Insights · Stories · Inspiration</div>
+      <p>Explore my journey: discover training highlights, resume credits, and the creative philosophies that shape my performances.</p>
+      <p>Dive into personal reflections on each role—offering a window into the heart and mind of an actor forging his path.</p>
+    </div>
+  </main>
+</body>
+</html>

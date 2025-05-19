@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Turanov</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #AD0014;
+      --white: #fff;
+      --black: #000;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+    }
+    /* Logo with wave effect */
+    svg { position: absolute; width: 0; height: 0; }
+    header h1 {
+      font-size: 3.5rem;
+      filter: url(#wave);
+      margin-bottom: 1rem;
+    }
+    /* TV frame container */
+    .tv-container {
+      position: relative;
+      width: 400px;   /* bumped up */
+      height: 320px;
+      margin: 3rem auto;
+    }
+    .tv-frame {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+     /* Headshot slider positioned inside TV screen */
+    .tv-container .slider {
+      position: absolute;
+      top: 24px;    /* was 20px */
+      left: 40px;   /* was 35px */
+      width: 320px; /* was 280px */
+      height: 240px;/* was 210px */
+      overflow: hidden;
+      border-radius: 4px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    }
+    .slides {
+      display: flex;
+      width: calc(320px * 5);
+      animation: slide 20s infinite;
+    }
+    .slides img {
+      width: 320px;
+      height: 240px;
+      object-fit: cover;
+    }
+    @keyframes slide {
+      0%,20%   { transform: translateX(0); }
+      25%,45%  { transform: translateX(-320px); }
+      50%,70%  { transform: translateX(-640px); }
+      75%,95%  { transform: translateX(-960px); }
+      100%     { transform: translateX(-1280px); }
+    }
+
+    /* Navigation */
+    nav ul {
+      list-style: none;
+      margin: 2rem 0;
+    }
+    nav ul li {
+      margin: .8rem 0;
+      position: relative;
+    }
+    nav ul li a {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+      display: inline-block;
+      padding: .2rem 0;
+      position: relative;
+    }
+    /* underline effect */
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; left: 0;
+      width: 0; height: 2px;
+      background: var(--white);
+      transition: width 0.3s ease;
+    }
+    nav ul li a:hover::after { width: 100%; }
+
+    /* Footer */
+    footer {
+      margin: 3rem 0;
+      font-size: 1rem;
+    }
+	
+	
+  </style>
+</head>
+<body>
+  <!-- SVG Filter for Wavy Logo -->
+  <svg>
+    <filter id="wave">
+      <feTurbulence x="0" y="0" baseFrequency="0.01 0.04" numOctaves="2" result="turb" />
+      <feDisplacementMap in="SourceGraphic" in2="turb" scale="20" />
+    </filter>
+  </svg>
+
+  <header>
+    <h1>Daniel Turanov</h1>
+  </header>
+
+  <!-- TV frame with slider inside -->
+  <div class="tv-container">
+    <img src="tv.png" alt="TV Frame" class="tv-frame">
+    <div class="slider">
+      <div class="slides">
+        <img src="headshot5.png" alt="Headshot 1">
+        <img src="headshot2.jpg" alt="Headshot 2">
+        <img src="headshot3.jpg" alt="Headshot 3">
+        <img src="headshot4.png" alt="Headshot 4">
+        <img src="headshot1.png" alt="Headshot 5">
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation menu with real links -->
+  <nav>
+    <ul>
+      <li><a href="headshots.html">Headshots</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="reel.html">Reel</a></li>
+	  <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Footer message -->
+  <footer>
+    <p>Our future is Undetermined and so is yours</p>
+    <p><em>Welcome to my world</em></p>
+  </footer>
+</body>
+</html>
