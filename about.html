@@ -1,137 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Daniel Turanov</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #F364A2;
-      --white: #fff;
-      --black: #000;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: var(--bg);
-      color: var(--white);
-      font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
-      padding: 2rem;
-      text-align: center;
-      line-height: 1.5;
-    }
-    /* Wavy logo filter */
-    svg { position: absolute; width: 0; height: 0; }
-    h1 {
-      font-size: 4rem;
-      filter: url(#wave);
-      margin-bottom: 1rem;
-    }
-    /* Navigation circles */
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
-    .nav-circle {
-      width: 100px;
-      height: 100px;
-      border: 3px solid var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .nav-circle:hover {
-      transform: scale(1.1) rotate(-3deg);
-    }
-    /* Section titles */
-    .section-small {
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-    .section-large {
-      font-size: 3rem;
-      font-style: italic;
-      margin-bottom: 2rem;
-    }
-    /* Content paragraphs */
-    .content p {
-      max-width: 800px;
-      margin: 0 auto 1.5rem;
-    }
-    /* Bottom highlight */
-    .highlight-title {
-      font-size: 3rem;
-      letter-spacing: 0.1rem;
-      margin-bottom: 1.5rem;
-    }
-	
-	/* make all nav links stay white (or inherit) even after visit */
-.nav-circle a:link,
-.nav-circle a:visited {
-  color: inherit;       /* or explicitly “#fff” */
-  text-decoration: none;
-}
 
-/* keep hover/active the same too (optional) */
-.nav-circle a:hover,
-.nav-circle a:active {
-  color: inherit;
-  text-decoration: none;
-}
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* NEW COLOR: deeper, more cinematic, still bold (better than pink) */
+      --bg: #0B1020;           /* midnight navy */
+      --accent: #4C7DFF;       /* electric blue */
+      --accent2: #A78BFA;      /* soft violet glow */
+      --white:#fff;
+      --line: rgba(255,255,255,.22);
+      --glass: rgba(255,255,255,.06);
+      --glass2: rgba(255,255,255,.10);
+      --shadow: 0 22px 60px rgba(0,0,0,.45);
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+
+    body{
+      background:
+        radial-gradient(circle at 20% 10%, rgba(76,125,255,.22), transparent 40%),
+        radial-gradient(circle at 80% 0%, rgba(167,139,250,.18), transparent 45%),
+        radial-gradient(circle at 50% 120%, rgba(255,255,255,.06), transparent 40%),
+        var(--bg);
+      color: var(--white);
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      padding: 2.2rem 1.2rem 3rem;
+      text-align:center;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* ====== Wavy logo + upgraded “generated” look (same idea as home) ====== */
+    svg#filters{ position:absolute; width:0; height:0; }
+
+    header{
+      margin-top: .6rem;
+      margin-bottom: 1.2rem;
+      position:relative;
+      z-index:2;
+      padding: 0 .6rem;
+    }
+
+    .logo{
+      display:inline-block;
+      font-weight: 800;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      filter: url(#wave);
+      text-shadow:
+        0 2px 0 rgba(0,0,0,.12),
+        0 18px 44px rgba(0,0,0,.35);
+      position:relative;
+      letter-spacing:.02em;
+      line-height:1;
+    }
+
+    .logo::before{
+      content: attr(data-text);
+      position:absolute;
+      inset:0;
+      color: transparent;
+      -webkit-text-stroke: 1.25px rgba(255,255,255,.60);
+      text-stroke: 1.25px rgba(255,255,255,.60);
+      opacity:.55;
+      pointer-events:none;
+      transform: translateY(1px);
+    }
+
+    .logo::after{
+      content:"";
+      position:absolute;
+      left:-18%;
+      top:-25%;
+      width: 136%;
+      height: 150%;
+      background: radial-gradient(circle at 28% 18%, rgba(255,255,255,.18), transparent 45%);
+      mix-blend-mode: screen;
+      opacity:.7;
+      pointer-events:none;
+    }
+
+    /* ====== Navigation circles (same layout, upgraded) ====== */
+    .nav{
+      display:flex;
+      justify-content:center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1.6rem 0 2.4rem;
+      position:relative;
+      z-index:2;
+      padding: 0 .6rem;
+    }
+
+    .nav-circle{
+      width: 104px;
+      height: 104px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(180deg, var(--glass2), var(--glass));
+      box-shadow: 0 14px 34px rgba(0,0,0,.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .nav-circle::before{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(76,125,255,.20), transparent 45%),
+        radial-gradient(circle at 80% 10%, rgba(167,139,250,.16), transparent 45%);
+      opacity:.9;
+      pointer-events:none;
+      transform: rotate(6deg);
+    }
+
+    .nav-circle:hover{
+      transform: scale(1.08) rotate(-2deg);
+      border-color: rgba(255,255,255,.40);
+      box-shadow: 0 18px 44px rgba(0,0,0,.35);
+    }
+
+    .nav-circle a:link,
+    .nav-circle a:visited{
+      color: var(--white);
+      text-decoration:none;
+      font-size: .95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      text-shadow: 0 8px 18px rgba(0,0,0,.35);
+      position:relative;
+      z-index:1;
+      padding: .2rem .4rem;
+    }
+
+    /* ====== Main content card (keeps your structure but makes it cleaner) ====== */
+    .content{
+      width: min(980px, 92vw);
+      margin: 0 auto;
+      position:relative;
+      z-index:1;
+    }
+
+    .card{
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: clamp(1.3rem, 3vw, 2.2rem);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:-50px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      opacity: .25;
+      pointer-events:none;
+      transform: rotate(2deg);
+    }
+
+    .section-small{
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      opacity: .9;
+      margin-bottom: .5rem;
+    }
+
+    .section-large{
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-style: italic;
+      margin-bottom: 1.2rem;
+      line-height: 1.15;
+    }
+
+    .content p{
+      max-width: 820px;
+      margin: 0 auto 1.1rem;
+      opacity: .98;
+      font-size: 1.05rem;
+    }
+
+    .divider{
+      width: min(520px, 80%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.34), transparent);
+      margin: 1.6rem auto;
+      opacity:.9;
+    }
+
+    .highlight-title{
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: .08em;
+      margin-bottom: 1rem;
+      text-transform: none;
+      text-shadow: 0 14px 28px rgba(0,0,0,.35);
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:.55rem;
+      margin: 1.2rem auto 0;
+      max-width: 860px;
+      position:relative;
+      z-index:1;
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.06);
+      padding: .55rem .8rem;
+      border-radius: 999px;
+      font-size: .92rem;
+      letter-spacing:.02em;
+      opacity:.95;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* small responsive tweak */
+    @media (max-width: 520px){
+      .nav-circle{ width: 96px; height: 96px; }
+      .content p{ font-size: 1rem; }
+    }
   </style>
 </head>
+
 <body>
   <!-- SVG filter definition -->
-  <svg>
+  <svg id="filters" aria-hidden="true">
     <filter id="wave">
-      <feTurbulence x="0" y="0" baseFrequency="0.01 0.05" numOctaves="3" result="warp" />
-      <feDisplacementMap in="SourceGraphic" in2="warp" scale="30" />
+      <feTurbulence x="0" y="0" baseFrequency="0.008 0.03" numOctaves="2" seed="3" result="warp" />
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="18" />
     </filter>
   </svg>
 
-  <!-- Header with wavy logo text -->
+  <!-- Header -->
   <header>
-    <h1>Daniel Turanov</h1>
+    <h1 class="logo" data-text="Daniel Turanov">Daniel Turanov</h1>
   </header>
 
   <!-- Navigation menu -->
   <nav class="nav">
-	<div class="nav-circle"><a href="index.html">Home</a></div>
+    <div class="nav-circle"><a href="index.html">Home</a></div>
     <div class="nav-circle"><a href="headshots.html">Headshots</a></div>
     <div class="nav-circle"><a href="about.html">About</a></div>
     <div class="nav-circle"><a href="reel.html">Reel</a></div>
-	<div class="nav-circle"><a href="resume.html">Resume</a></div>
+    <div class="nav-circle"><a href="resume.html">Resume</a></div>
     <div class="nav-circle"><a href="contact.html">Contact</a></div>
   </nav>
 
   <!-- Main About content -->
   <main class="content">
-    <!-- Intro section -->
-    <div class="intro">
-      <div class="section-small">You may be asking...</div>
-      <div class="section-large">What is Daniel Turanov?</div>
-      <p>Daniel Turanov is an actor, storyteller, and dreamer. From his first high-school monologue to leading roles in short films like <em>Blood Bound</em> and <em>Silence</em>, he’s driven by a passion for bringing characters to life.</p>
-      <p>Currently represented by Advent Management and Phirgun Mair, Daniel balances on-set experience with continuous training in the Stanislavski method. Whether in Chicago, New York, or Los Angeles, he pursues each project with unwavering dedication.</p>
-    </div>
+    <section class="card">
+      <!-- Intro section -->
+      <div class="intro">
+        <div class="section-small">You may be asking…</div>
+        <div class="section-large">Who is Daniel Turanov?</div>
 
-    <!-- What to expect -->
-    <div class="bottom">
-      <div class="section-small">What should you expect to find here?</div>
-      <div class="highlight-title">Insights · Stories · Inspiration</div>
-      <p>Explore my journey: discover training highlights, resume credits, and the creative philosophies that shape my performances.</p>
-      <p>Dive into personal reflections on each role—offering a window into the heart and mind of an actor forging his path.</p>
-    </div>
+        <p>
+          I’m a performer first — an actor and musician building a life around stage, story, and sound.
+          I love roles that really demand honesty and transformation, the kind where you can’t just hide behind the lines.
+          I’m constantly training, sharpening craft, and chasing that moment where a scene (or a song) makes a room go quiet.
+        </p>
+
+        <p>
+          On the music side, I perform and write with my younger brother which is a duo project shaped by
+          disco-funk energy, modern pop/R&amp;B polish, and a lot of live-show ambition. We’re focused on truly doing fantastic work and we want to shock the world with our music and performance.
+        </p>
+
+        <p>
+          Offstage, I’m really obsessive about growth: creating, practicing, refining. I’m building a professional presence,
+          pushing my craft through new projects, and staying ready for bigger rooms, bigger sets, and bigger stages.
+        </p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- What to expect -->
+      <div class="bottom">
+        <div class="section-small">What should you expect to find here?</div>
+        <div class="highlight-title">Work · Process · Momentum</div>
+
+        <p>
+          This site is a clean window into what I do: headshots, reel work, credits, and the direction I’m moving in
+          as an actor, and as a live performer. You’ll also see the tone of my world: cinematic, energetic, and real.
+        </p>
+
+        <p>
+          If you’re a casting director, creative, or collaborator and also want to make a mark and do something great. Reach out, I want to work with more incredible minds and people.
+        </p>
+
+      
+        </div>
+      </div>
+    </section>
   </main>
 </body>
 </html>
