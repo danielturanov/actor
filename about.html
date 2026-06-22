@@ -9,11 +9,11 @@
 
   <style>
     :root{
-      /* NEW COLOR: deeper, more cinematic, still bold (better than pink) */
-      --bg: #0B1020;           /* midnight navy */
-      --accent: #4C7DFF;       /* electric blue */
-      --accent2: #A78BFA;      /* soft violet glow */
+      --bg: #0B1020;
+      --accent: #4C7DFF;
+      --accent2: #A78BFA;
       --white:#fff;
+      --muted: rgba(255,255,255,.78);
       --line: rgba(255,255,255,.22);
       --glass: rgba(255,255,255,.06);
       --glass2: rgba(255,255,255,.10);
@@ -33,11 +33,10 @@
       min-height: 100vh;
       padding: 2.2rem 1.2rem 3rem;
       text-align:center;
-      line-height:1.6;
+      line-height:1.7;
       overflow-x:hidden;
     }
 
-    /* ====== Wavy logo + upgraded “generated” look (same idea as home) ====== */
     svg#filters{ position:absolute; width:0; height:0; }
 
     header{
@@ -86,7 +85,6 @@
       pointer-events:none;
     }
 
-    /* ====== Navigation circles (same layout, upgraded) ====== */
     .nav{
       display:flex;
       justify-content:center;
@@ -147,7 +145,6 @@
       padding: .2rem .4rem;
     }
 
-    /* ====== Main content card (keeps your structure but makes it cleaner) ====== */
     .content{
       width: min(980px, 92vw);
       margin: 0 auto;
@@ -156,15 +153,27 @@
     }
 
     .card{
-      border-radius: 22px;
+      border-radius: 26px;
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.095), rgba(255,255,255,.04)),
+        radial-gradient(circle at 18% 8%, rgba(76,125,255,.12), transparent 42%),
+        radial-gradient(circle at 82% 2%, rgba(167,139,250,.12), transparent 40%);
       box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      padding: clamp(1.3rem, 3vw, 2.2rem);
+      padding: clamp(1.45rem, 4vw, 2.75rem);
       overflow:hidden;
       position:relative;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      pointer-events:none;
     }
 
     .card::after{
@@ -173,39 +182,71 @@
       inset:-50px;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
-      opacity: .25;
+      opacity: .22;
       pointer-events:none;
       transform: rotate(2deg);
     }
 
+    .intro,
+    .bottom{
+      position:relative;
+      z-index:1;
+    }
+
     .section-small{
-      font-size: 1rem;
+      font-size: .9rem;
       text-transform: uppercase;
-      letter-spacing: .14em;
-      opacity: .9;
-      margin-bottom: .5rem;
+      letter-spacing: .18em;
+      opacity: .86;
+      margin-bottom: .55rem;
     }
 
     .section-large{
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2.15rem, 4.8vw, 3.6rem);
       font-style: italic;
-      margin-bottom: 1.2rem;
-      line-height: 1.15;
+      margin-bottom: 1.35rem;
+      line-height: 1.08;
+      text-shadow: 0 14px 30px rgba(0,0,0,.36);
     }
 
-    .content p{
+    .story{
       max-width: 820px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .story p,
+    .bottom p{
       margin: 0 auto 1.1rem;
-      opacity: .98;
-      font-size: 1.05rem;
+      opacity: .97;
+      font-size: clamp(1rem, 1.35vw, 1.08rem);
+      color: rgba(255,255,255,.92);
+    }
+
+    .lead{
+      font-size: clamp(1.15rem, 2vw, 1.38rem) !important;
+      line-height:1.55;
+      color: var(--white) !important;
+      margin-bottom: 1.25rem !important;
+    }
+
+    .lead strong{
+      font-weight:800;
+      color: var(--white);
+    }
+
+    .sentence-punch{
+      display:inline;
+      color: var(--white);
+      font-weight: 700;
     }
 
     .divider{
-      width: min(520px, 80%);
+      width: min(560px, 82%);
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.34), transparent);
-      margin: 1.6rem auto;
-      opacity:.9;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.38), transparent);
+      margin: 1.9rem auto;
+      opacity:.95;
     }
 
     .highlight-title{
@@ -216,12 +257,63 @@
       text-shadow: 0 14px 28px rgba(0,0,0,.35);
     }
 
+    .bottom{
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .bottom p{
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .closing-line{
+      margin-top: 1.3rem;
+      font-size: clamp(1.08rem, 1.8vw, 1.28rem);
+      font-weight: 700;
+      letter-spacing: .01em;
+      color: var(--white);
+    }
+
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      margin-top: 1.5rem;
+    }
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height: 48px;
+      padding: .78rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.30);
+      color: var(--white);
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      font-size:.86rem;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.07)),
+        radial-gradient(circle at 25% 20%, rgba(76,125,255,.22), transparent 50%);
+      box-shadow: 0 14px 34px rgba(0,0,0,.26);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .cta:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.48);
+      box-shadow: 0 18px 44px rgba(0,0,0,.35);
+    }
+
     .pill-row{
       display:flex;
       flex-wrap:wrap;
       justify-content:center;
       gap:.55rem;
-      margin: 1.2rem auto 0;
+      margin: 1.25rem auto 0;
       max-width: 860px;
       position:relative;
       z-index:1;
@@ -239,10 +331,15 @@
       -webkit-backdrop-filter: blur(10px);
     }
 
-    /* small responsive tweak */
-    @media (max-width: 520px){
-      .nav-circle{ width: 96px; height: 96px; }
-      .content p{ font-size: 1rem; }
+    @media (max-width: 620px){
+      body{ padding: 1.7rem .9rem 2.5rem; }
+      .nav{ gap:.75rem; margin-bottom: 2rem; }
+      .nav-circle{ width: 92px; height: 92px; }
+      .nav-circle a:link,
+      .nav-circle a:visited{ font-size:.82rem; }
+      .story{ text-align:left; }
+      .bottom p{ text-align:left; }
+      .card::before{ inset: 10px; }
     }
   </style>
 </head>
@@ -274,45 +371,63 @@
   <!-- Main About content -->
   <main class="content">
     <section class="card">
-      <!-- Intro section -->
       <div class="intro">
         <div class="section-small">You may be asking…</div>
         <div class="section-large">Who is Daniel Turanov?</div>
 
-        <p>
-          I’m a performer first — an actor and musician building a life around stage, story, and sound.
-          I love roles that really demand honesty and transformation, the kind where you can’t just hide behind the lines.
-          I’m constantly training, sharpening craft, and chasing that moment where a scene (or a song) makes a room go quiet.
-        </p>
+        <div class="story">
+          <p class="lead">
+       
+            <br><strong>I’m an actor. I’m a singer. I’m a performer.</strong>
+          </p>
 
-        <p>
-          On the music side, I perform and write with my younger brother which is a duo project shaped by
-          disco-funk energy, modern pop/R&amp;B polish, and a lot of live-show ambition. We’re focused on truly doing fantastic work and we want to shock the world with our music and performance.
-        </p>
+          <p>
+            I’ve always felt like I was meant to build a life around stories, music, and moments that make people feel something.
+            Acting, to me, is not just about saying lines. It’s about becoming honest enough to let people see something real.
+          </p>
 
-        <p>
-          Offstage, I’m really obsessive about growth: creating, practicing, refining. I’m building a professional presence,
-          pushing my craft through new projects, and staying ready for bigger rooms, bigger sets, and bigger stages.
-        </p>
+          <p>
+            I love roles that ask something from me — roles that force me to transform, listen, take risks, and step into another person’s world.
+            That’s the kind of work I’m chasing.
+          </p>
+
+          <p>
+            Music is the other side of it. I perform and write with my younger brother, and together we’re building something that feels alive —
+            a mix of disco, funk, pop, R&amp;B, soul, and the kind of energy that belongs on a real stage.
+            <span class="sentence-punch">We don’t just want to make songs. We want to create moments.</span>
+          </p>
+
+          <p>
+            I’m obsessive about getting better. I practice, study, create, fail, adjust, and keep going.
+            I’m not interested in being average. I want to grow into the kind of artist who can walk into a room,
+            step onto a stage, or show up on screen and make people pay attention.
+          </p>
+        </div>
       </div>
 
       <div class="divider"></div>
 
-      <!-- What to expect -->
       <div class="bottom">
         <div class="section-small">What should you expect to find here?</div>
         <div class="highlight-title">Work · Process · Momentum</div>
 
         <p>
-          This site is a clean window into what I do: headshots, reel work, credits, and the direction I’m moving in
-          as an actor, and as a live performer. You’ll also see the tone of my world: cinematic, energetic, and real.
+          This site is a piece of that journey. Here you’ll find my headshots, reel work, credits, music,
+          and the world I’m building around all of it. It’s not just a portfolio. It’s a snapshot of the work,
+          the process, and the momentum.
         </p>
 
         <p>
-          If you’re a casting director, creative, or collaborator and also want to make a mark and do something great. Reach out, I want to work with more incredible minds and people.
+          If you’re a casting director, filmmaker, creative, musician, or someone who wants to make something that actually matters,
+          I’d love to connect.
         </p>
 
-      
+        <div class="closing-line">
+          I’m here to work. I’m here to grow. And I’m here to do something special.
+        </div>
+
+        <div class="cta-row">
+          <a class="cta" href="contact.html">Let’s Connect</a>
         </div>
       </div>
     </section>
