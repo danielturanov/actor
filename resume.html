@@ -1,242 +1,774 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resume | Daniel Turanov</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --bg: #FFB300;
-      --white: #fff;
-      --black: #000;
+    :root{
+      --bg:#120C02;
+      --gold:#FFB300;
+      --gold2:#FFDD7A;
+      --amber:#FF7A00;
+      --white:#fff;
+      --muted:rgba(255,255,255,.76);
+      --line:rgba(255,255,255,.22);
+      --glass:rgba(255,255,255,.065);
+      --glass2:rgba(255,255,255,.12);
+      --shadow:0 28px 80px rgba(0,0,0,.48);
+      --glow:0 0 42px rgba(255,179,0,.28);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      position: relative;
-      background-color: var(--bg);
-      color: var(--white);
-      font-family: 'Poppins', sans-serif;
-      padding: 2rem;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: "Resume";
-      position: absolute;
-      top: 30%; left: -5%;
-      font-size: 10rem;
-      color: rgba(255,255,255,0.07);
-      transform: rotate(-30deg);
-      white-space: nowrap;
-    }
-    svg { position: absolute; width: 0; height: 0; }
-    header h1 {
-      font-size: 3.5rem;
-      filter: url(#wave);
-      margin-bottom: 1rem;
-    }
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .nav-circle {
-      width: 90px; height: 90px;
-      border: 3px solid var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-transform: uppercase;
-      font-weight: 600;
-      font-size: 0.9rem;
-      background: rgba(255,255,255,0.1);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .nav-circle:hover { transform: scale(1.1) rotate(5deg); }
-    .resume-container {
-      display: grid;
-      grid-template-columns: 1fr 40px 1fr;
-      gap: 2rem;
-      position: relative;
-      padding: 1rem 0;
-    }
-    .resume-container::before {
-      content: "";
-      position: absolute;
-      top: 0; bottom: 0; left: calc(50% - 2px);
-      width: 4px;
-      background: rgba(255,255,255,0.3);
-    }
-    .resume-item {
-      position: relative;
-      padding: 1rem;
-      background: rgba(255,255,255,0.1);
-      border: 2px solid var(--white);
-      border-radius: 8px;
-      margin-bottom: 2rem;
-    }
-    .resume-item:nth-child(odd) { grid-column: 1; }
-    .resume-item:nth-child(even) { grid-column: 3; }
-    .resume-item::before {
-      content: "";
-      position: absolute;
-      top: 1rem;
-      left: calc(50% - 6px);
-      width: 12px; height: 12px;
-      background: var(--white);
-      border-radius: 50%;
-    }
-    .resume-item h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-    }
-    .resume-item p, .resume-item ul { font-size: 0.9rem; line-height: 1.4; }
-    .resume-item ul { padding-left: 1.2rem; margin-top: 0.5rem; }
-    .section-title {
-      grid-column: 1 / span 3;
-      font-size: 2.5rem;
-      font-weight: 800;
-      text-align: center;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-    }
-	
-	/* make all nav links stay white (or inherit) even after visit */
-.nav-circle a:link,
-.nav-circle a:visited {
-  color: inherit;       /* or explicitly “#fff” */
-  text-decoration: none;
-}
 
-/* keep hover/active the same too (optional) */
-.nav-circle a:hover,
-.nav-circle a:active {
-  color: inherit;
-  text-decoration: none;
-}
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
 
-:root {
-  --accent1: #00F0FF;
-  --accent2: #FF00E0;
-  --white: #fff;
-  --black: #000;
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-.download-btn {
-  display: inline-block;
-  margin: 1rem 0 2rem;
-  padding: 0.8rem 2rem;
-  background: linear-gradient(45deg, var(--accent1), var(--accent2));
-  color: var(--black);
-  font-weight: 800;
-  text-transform: uppercase;
-  font-size: 1rem;
-  text-decoration: none;
-  border: 2px solid var(--white);
-  border-radius: 16px;
-  box-shadow:
-    0 0 8px var(--accent1),
-    0 0 16px var(--accent2),
-    inset 0 0 4px rgba(255,255,255,0.5);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+    body{
+      position:relative;
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(255,179,0,.34), transparent 34%),
+        radial-gradient(circle at 82% 14%, rgba(255,122,0,.20), transparent 33%),
+        radial-gradient(circle at 50% 120%, rgba(255,221,122,.16), transparent 38%),
+        linear-gradient(180deg, #120C02 0%, #261600 54%, #FFB300 190%);
+      color:var(--white);
+      font-family:"Poppins", sans-serif;
+      padding:2rem 1.25rem 3.4rem;
+      overflow-x:hidden;
+    }
 
-.download-btn:hover {
-  transform: scale(1.05);
-  box-shadow:
-    0 0 12px var(--accent1),
-    0 0 24px var(--accent2),
-    inset 0 0 6px rgba(255,255,255,0.7);
-}
+    body::before{
+      content:"Resume";
+      position:fixed;
+      top:31%;
+      left:-6%;
+      font-size:clamp(5rem, 16vw, 14rem);
+      font-weight:800;
+      color:rgba(255,255,255,.045);
+      transform:rotate(-28deg);
+      white-space:nowrap;
+      pointer-events:none;
+      z-index:0;
+    }
 
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size:56px 56px;
+      mask-image:radial-gradient(circle at center, black, transparent 74%);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    svg#filters{
+      position:absolute;
+      width:0;
+      height:0;
+    }
+
+    header{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      margin:.4rem 0 1.3rem;
+    }
+
+    .logo{
+      display:inline-block;
+      font-size:clamp(2.7rem, 6vw, 4.4rem);
+      font-weight:800;
+      line-height:1;
+      letter-spacing:.02em;
+      filter:url(#wave);
+      text-shadow:
+        0 2px 0 rgba(0,0,0,.16),
+        0 20px 48px rgba(0,0,0,.45);
+      position:relative;
+    }
+
+    .logo::before{
+      content:attr(data-text);
+      position:absolute;
+      inset:0;
+      color:transparent;
+      -webkit-text-stroke:1.25px rgba(255,255,255,.58);
+      text-stroke:1.25px rgba(255,255,255,.58);
+      opacity:.55;
+      transform:translateY(1px);
+      pointer-events:none;
+    }
+
+    .logo::after{
+      content:"";
+      position:absolute;
+      left:-20%;
+      top:-30%;
+      width:140%;
+      height:160%;
+      background:radial-gradient(circle at 30% 25%, rgba(255,255,255,.18), transparent 45%);
+      mix-blend-mode:screen;
+      opacity:.65;
+      pointer-events:none;
+    }
+
+    .nav{
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      margin:1.45rem auto 2.5rem;
+      position:relative;
+      z-index:2;
+      max-width:900px;
+    }
+
+    .nav-circle{
+      width:102px;
+      height:102px;
+      border:1px solid var(--line);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(180deg, var(--glass2), var(--glass));
+      box-shadow:0 14px 38px rgba(0,0,0,.28);
+      backdrop-filter:blur(11px);
+      -webkit-backdrop-filter:blur(11px);
+      transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .nav-circle::before{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background:
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,.16), transparent 42%),
+        radial-gradient(circle at 78% 15%, rgba(255,179,0,.24), transparent 45%);
+      opacity:.9;
+      pointer-events:none;
+      transform:rotate(6deg);
+    }
+
+    .nav-circle:hover{
+      transform:scale(1.08) rotate(2deg);
+      border-color:rgba(255,255,255,.48);
+      box-shadow:0 18px 50px rgba(0,0,0,.36), var(--glow);
+    }
+
+    .nav-circle a:link,
+    .nav-circle a:visited,
+    .nav-circle a:hover,
+    .nav-circle a:active{
+      color:var(--white);
+      text-decoration:none;
+    }
+
+    .nav-circle a{
+      font-size:.92rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.055em;
+      text-shadow:0 8px 18px rgba(0,0,0,.35);
+      position:relative;
+      z-index:1;
+    }
+
+    .resume-wrap{
+      width:min(1120px, 94vw);
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+    }
+
+    .hero-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:30px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.045)),
+        rgba(0,0,0,.20);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      padding:clamp(1.3rem, 3vw, 2.35rem);
+      margin-bottom:1.25rem;
+      text-align:center;
+    }
+
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255,255,255,.18), transparent 33%),
+        radial-gradient(circle at 88% 12%, rgba(255,179,0,.30), transparent 36%);
+      pointer-events:none;
+      opacity:.9;
+      z-index:0;
+    }
+
+    .hero-card::after,
+    .resume-grid::after{
+      content:"";
+      position:absolute;
+      inset:-50px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      opacity:.20;
+      pointer-events:none;
+      transform:rotate(2deg);
+      z-index:0;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      max-width:860px;
+      margin:0 auto;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.55rem;
+      color:rgba(255,255,255,.84);
+      font-size:.85rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-weight:700;
+      margin-bottom:.65rem;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after{
+      content:"";
+      width:34px;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.55));
+    }
+
+    .eyebrow::after{
+      background:linear-gradient(90deg, rgba(255,255,255,.55), transparent);
+    }
+
+    .page-title{
+      font-size:clamp(2.25rem, 5vw, 4.6rem);
+      font-weight:800;
+      letter-spacing:.035em;
+      line-height:1.03;
+      margin-bottom:.8rem;
+      text-shadow:0 18px 44px rgba(0,0,0,.38);
+    }
+
+    .profile-line{
+      max-width:760px;
+      color:var(--muted);
+      font-size:clamp(1rem, 1.8vw, 1.12rem);
+      margin:0 auto 1.25rem;
+      line-height:1.72;
+    }
+
+    .quick-info{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:.55rem;
+      margin:1.15rem auto 0;
+    }
+
+    .chip{
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:999px;
+      padding:.55rem .8rem;
+      background:rgba(255,255,255,.075);
+      color:rgba(255,255,255,.92);
+      font-size:.9rem;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+
+    .download-row{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:.8rem;
+      margin-top:1.35rem;
+    }
+
+    .download-btn,
+    .contact-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:.8rem 1.25rem;
+      border:1px solid rgba(255,255,255,.34);
+      border-radius:999px;
+      color:var(--white);
+      text-transform:uppercase;
+      font-size:.88rem;
+      letter-spacing:.07em;
+      font-weight:800;
+      text-decoration:none;
+      background:rgba(255,255,255,.08);
+      box-shadow:0 12px 30px rgba(0,0,0,.24);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      transition:transform .2s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .download-btn{
+      background:linear-gradient(45deg, rgba(255,179,0,.84), rgba(255,122,0,.84));
+      color:#160C00;
+      border-color:rgba(255,255,255,.48);
+      box-shadow:
+        0 16px 36px rgba(0,0,0,.30),
+        0 0 24px rgba(255,179,0,.28);
+    }
+
+    .download-btn:hover,
+    .contact-btn:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.55);
+      box-shadow:0 18px 42px rgba(0,0,0,.32), var(--glow);
+    }
+
+    .resume-grid{
+      position:relative;
+      overflow:hidden;
+      border-radius:30px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04)),
+        rgba(0,0,0,.18);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      padding:clamp(1rem, 2.8vw, 2rem);
+      display:grid;
+      grid-template-columns:1.18fr .82fr;
+      gap:1rem;
+    }
+
+    .resume-section{
+      position:relative;
+      z-index:1;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:22px;
+      background:rgba(255,255,255,.065);
+      padding:1.15rem;
+      box-shadow:inset 0 0 0 1px rgba(0,0,0,.10);
+    }
+
+    .resume-section.wide{
+      grid-column:1 / -1;
+    }
+
+    .section-heading{
+      display:flex;
+      align-items:center;
+      gap:.65rem;
+      font-size:1rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:1rem;
+      color:rgba(255,255,255,.94);
+    }
+
+    .section-heading::before{
+      content:"";
+      width:11px;
+      height:11px;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--gold2), var(--gold));
+      box-shadow:0 0 18px rgba(255,179,0,.5);
+      flex:0 0 auto;
+    }
+
+    .credit-list{
+      display:grid;
+      gap:.7rem;
+    }
+
+    .credit{
+      display:grid;
+      grid-template-columns:1.1fr .95fr .95fr;
+      gap:.8rem;
+      align-items:start;
+      padding:.85rem;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.13);
+      background:rgba(0,0,0,.16);
+      text-align:left;
+    }
+
+    .credit.featured{
+      background:
+        linear-gradient(90deg, rgba(255,179,0,.18), rgba(255,255,255,.055)),
+        rgba(0,0,0,.16);
+      border-color:rgba(255,221,122,.38);
+      box-shadow:0 0 24px rgba(255,179,0,.08);
+    }
+
+    .credit-title{
+      font-weight:800;
+      color:#fff;
+    }
+
+    .credit-role,
+    .credit-meta{
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .credit-meta{
+      text-align:right;
+    }
+
+    .info-block{
+      text-align:left;
+      color:var(--muted);
+      font-size:.96rem;
+      line-height:1.72;
+    }
+
+    .info-block strong{
+      color:#fff;
+      font-weight:700;
+    }
+
+    .info-block a{
+      color:#fff;
+      text-decoration:none;
+      border-bottom:1px solid rgba(255,255,255,.28);
+    }
+
+    .info-block a:hover{
+      border-bottom-color:rgba(255,255,255,.85);
+    }
+
+    .skill-cloud{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.55rem;
+      text-align:left;
+    }
+
+    .skill{
+      border:1px solid rgba(255,255,255,.20);
+      border-radius:999px;
+      padding:.5rem .72rem;
+      background:rgba(0,0,0,.15);
+      color:rgba(255,255,255,.88);
+      font-size:.9rem;
+    }
+
+    .training-list{
+      list-style:none;
+      display:grid;
+      gap:.65rem;
+      text-align:left;
+    }
+
+    .training-list li{
+      color:var(--muted);
+      padding:.7rem .8rem;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.13);
+      background:rgba(0,0,0,.14);
+      line-height:1.45;
+    }
+
+    .footer-note{
+      color:rgba(255,255,255,.62);
+      font-size:.88rem;
+      text-align:center;
+      margin-top:1rem;
+      position:relative;
+      z-index:1;
+    }
+
+    @media (max-width:850px){
+      body{
+        padding:1.55rem .85rem 2.8rem;
+      }
+
+      .nav{
+        gap:.7rem;
+        margin-bottom:2rem;
+      }
+
+      .nav-circle{
+        width:88px;
+        height:88px;
+      }
+
+      .nav-circle a{
+        font-size:.78rem;
+      }
+
+      .resume-grid{
+        grid-template-columns:1fr;
+        border-radius:24px;
+      }
+
+      .credit{
+        grid-template-columns:1fr;
+        gap:.25rem;
+      }
+
+      .credit-meta{
+        text-align:left;
+      }
+
+      .download-btn,
+      .contact-btn{
+        width:100%;
+        max-width:320px;
+      }
+    }
+
+    @media print{
+      body{
+        background:#fff;
+        color:#000;
+        padding:0;
+      }
+
+      body::before,
+      body::after,
+      svg,
+      header,
+      .nav,
+      .download-row,
+      .footer-note{
+        display:none !important;
+      }
+
+      .resume-wrap{
+        width:100%;
+      }
+
+      .hero-card,
+      .resume-grid,
+      .resume-section,
+      .credit,
+      .training-list li,
+      .skill{
+        box-shadow:none;
+        background:#fff;
+        color:#000;
+        border-color:#bbb;
+      }
+
+      .profile-line,
+      .credit-role,
+      .credit-meta,
+      .info-block,
+      .training-list li,
+      .skill{
+        color:#000;
+      }
+
+      .resume-grid{
+        display:block;
+      }
+
+      .resume-section{
+        margin-bottom:12px;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <svg>
+  <svg id="filters" aria-hidden="true">
     <filter id="wave">
       <feTurbulence x="0" y="0" baseFrequency="0.01 0.04" numOctaves="2" result="turb" />
-      <feDisplacementMap in="SourceGraphic" in2="turb" scale="20" />
+      <feDisplacementMap in="SourceGraphic" in2="turb" scale="22" />
     </filter>
   </svg>
 
-  <header><h1>Daniel Turanov</h1></header>
-<nav class="nav">
-	<div class="nav-circle"><a href="index.html">Home</a></div>
+  <header>
+    <h1 class="logo" data-text="Daniel Turanov">Daniel Turanov</h1>
+  </header>
+
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-circle"><a href="index.html">Home</a></div>
     <div class="nav-circle"><a href="headshots.html">Headshots</a></div>
     <div class="nav-circle"><a href="about.html">About</a></div>
     <div class="nav-circle"><a href="reel.html">Reel</a></div>
-	<div class="nav-circle"><a href="resume.html">Resume</a></div>
+    <div class="nav-circle"><a href="resume.html">Resume</a></div>
     <div class="nav-circle"><a href="contact.html">Contact</a></div>
   </nav>
 
-  <div class="resume-container">
-    <div class="section-title">My Acting Journey</div>
+  <main class="resume-wrap">
+    <section class="hero-card" aria-label="Resume introduction">
+      <div class="hero-inner">
+        <div class="eyebrow">Actor · Performer · Musician</div>
+        <h2 class="page-title">Resume</h2>
+        <p class="profile-line">
+          Driven actor and performer based in St. Louis with experience across film, performance, music, and on-camera work.
+          Focused on honest, present, cinematic work — with the training, discipline, and energy to keep growing into bigger roles.
+        </p>
 
-    <div class="resume-item">
-      <h3>Profile</h3>
-      <p>Driven and talented actor with experience in both stage and film acting. Highly passionate and diligent work ethic, a natural team player and people person.</p>
-    </div>
-    <div class="resume-item">
-      <h3>Contact</h3>
-      <p>St. Louis, MO<br>
-      314-616-9842<br>
-      <a href="mailto:danielturanov@gmail.com" style="color: var(--white)">danielturanov@gmail.com</a><br>
-      <a href="https://danielturanov.github.io/actor/" target="_blank" style="color: var(--white)">danielturanov.github.io/actor/</a>
-      </p>
-    </div>
+        <div class="quick-info" aria-label="Quick profile details">
+          <div class="chip">St. Louis, MO</div>
+          <div class="chip">Fluent Russian</div>
+          <div class="chip">Guitar & Singing</div>
+          <div class="chip">MMA · Running · Swimming</div>
+        </div>
 
-    <div class="resume-item">
-      <h3>Manager</h3>
-      <p>Daniel Wurzbacher<br>
-      <a href="mailto:admin@weareadvent.com" style="color: var(--white)">admin@weareadvent.com</a><br>
-      Los Angeles, CA
-      </p>
-    </div>
-    <div class="resume-item">
-      <h3>Training</h3>
-      <ul>
-        <li>COCA Acting Studio</li>
-        <li>Marquette Acting for Film</li>
-        <li>Improvisation Workshop</li>
-      </ul>
-    </div>
+        <div class="download-row">
+          <a href="Daniel_Turanov_Resume_New.pdf" download class="download-btn">Download Resume</a>
+          <a href="mailto:danielturanov@gmail.com" class="contact-btn">Contact Me</a>
+        </div>
+      </div>
+    </section>
 
-    <div class="resume-item">
-      <h3>Skills</h3>
-      <ul>
-        <li>Fluent in Russian</li>
-        <li>Guitar & Singing</li>
-        <li>Improv & Accents</li>
-        <li>Mixed Martial Arts (Jiu-Jitsu, Kickboxing)</li>
-        <li>Long-Distance Running & Weightlifting</li>
-        <li>Swimming</li>
-        <li>Strong Sales Skills (Transitioning into Real Estate)</li>
-        <li>Fast Reader & Great Memory</li>
-        <li>Highly Articulate</li>
-      </ul>
-    </div>
-    <div class="resume-item">
-      <h3>Film Credits</h3>
-      <ul>
-		<li><strong>Out For Blood</strong> – Lead Role (2025, Dir. J.P. Kilian)</li>
-		<li><strong>Throwback</strong> – Lead Role (2025, Dir. Magdelane)</li>
-        <li><strong>In Due Time</strong> – Lead Role (2025, Dir. George Miki Han)</li>
-        <li><strong>Gambling Man</strong> – Supporting (2025, Dir. J.P. Kilian)</li>
-        <li><strong>Blood Bound</strong> – Lead Role (2024, Dir. Sam Sowerby)</li>
-        <li><strong>Silence</strong> – Lead (2024, Dir. Nathan Domescik)</li>
-        <li><strong>The Middle</strong> – Support (2024, Dir. Owen H.)</li>
-      </ul>
-	  
-	  <a href="Daniel_Turanov_Resume_New.pdf" download class="download-btn">
-  Download Resume
-</a>
-    </div>
+    <section class="resume-grid" aria-label="Daniel Turanov acting resume">
+      <div class="resume-section wide">
+        <h3 class="section-heading">Film Credits</h3>
 
-  </div>
+        <div class="credit-list">
+          <div class="credit featured">
+            <div class="credit-title">Bridal Style</div>
+            <div class="credit-role">Lead</div>
+            <div class="credit-meta">2026 · Dir. Patrick Dwyer</div>
+          </div>
+
+          <div class="credit">
+            <div class="credit-title">Out For Blood</div>
+            <div class="credit-role">Lead Role</div>
+            <div class="credit-meta">2025 · Dir. J.P. Kilian</div>
+          </div>
+
+          <div class="credit">
+            <div class="credit-title">Throwback</div>
+            <div class="credit-role">Lead Role</div>
+            <div class="credit-meta">2025 · Dir. Magdelane</div>
+          </div>
+
+          <div class="credit">
+            <div class="credit-title">In Due Time</div>
+            <div class="credit-role">Lead Role</div>
+            <div class="credit-meta">2025 · Dir. George Miki Han</div>
+          </div>
+
+          <div class="credit">
+            <div class="credit-title">Gambling Man</div>
+            <div class="credit-role">Supporting</div>
+            <div class="credit-meta">2025 · Dir. J.P. Kilian</div>
+          </div>
+
+          <div class="credit">
+            <div class="credit-title">Blood Bound</div>
+            <div class="credit-role">Lead Role</div>
+            <div class="credit-meta">2024 · Dir. Sam Sowerby</div>
+          </div>
+
+          <div class="credit">
+            <div class="credit-title">Silence</div>
+            <div class="credit-role">Lead</div>
+            <div class="credit-meta">2024 · Dir. Nathan Domescik</div>
+          </div>
+
+          <div class="credit">
+            <div class="credit-title">The Middle</div>
+            <div class="credit-role">Supporting</div>
+            <div class="credit-meta">2024 · Dir. Owen H.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h3 class="section-heading">Profile</h3>
+        <div class="info-block">
+          <p>
+            <strong>Daniel Turanov</strong> is an actor and performer with a disciplined creative background in film acting,
+            music, movement, and live performance. He brings strong focus, emotional availability, and a driven work ethic to every project.
+          </p>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h3 class="section-heading">Contact</h3>
+        <div class="info-block">
+          <p>
+            <strong>Base:</strong> St. Louis, MO<br>
+            <strong>Phone:</strong> 314-616-9842<br>
+            <strong>Email:</strong> <a href="mailto:danielturanov@gmail.com">danielturanov@gmail.com</a><br>
+            <strong>Website:</strong> <a href="https://danielturanov.github.io/actor/" target="_blank" rel="noopener">danielturanov.github.io/actor/</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h3 class="section-heading">Representation</h3>
+        <div class="info-block">
+          <p>
+            <strong>Advent Management</strong><br>
+            Representing New York &amp; Los Angeles<br>
+            <a href="mailto:admin@weareadvent.com">admin@weareadvent.com</a>
+          </p>
+
+          <p style="margin-top: .85rem;">
+            <strong>NOW Talent</strong><br>
+            Representing Chicago &amp; Missouri
+          </p>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h3 class="section-heading">Training</h3>
+        <ul class="training-list">
+          <li>COCA Acting Studio</li>
+          <li>Marquette Acting for Film</li>
+          <li>Improvisation Workshop</li>
+        </ul>
+      </div>
+
+      <div class="resume-section wide">
+        <h3 class="section-heading">Skills</h3>
+        <div class="skill-cloud">
+          <span class="skill">Fluent in Russian</span>
+          <span class="skill">Guitar</span>
+          <span class="skill">Singing</span>
+          <span class="skill">Improvisation</span>
+          <span class="skill">Accents</span>
+          <span class="skill">Jiu-Jitsu</span>
+          <span class="skill">Kickboxing</span>
+          <span class="skill">Mixed Martial Arts</span>
+          <span class="skill">Long-Distance Running</span>
+          <span class="skill">Weightlifting</span>
+          <span class="skill">Swimming</span>
+          <span class="skill">Strong Sales Skills</span>
+          <span class="skill">Fast Reader</span>
+          <span class="skill">Great Memory</span>
+          <span class="skill">Highly Articulate</span>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Resume page designed for web viewing. Use the download button for the printable PDF version.</p>
+  </main>
 </body>
 </html>
