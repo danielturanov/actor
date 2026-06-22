@@ -1,147 +1,531 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reel | Daniel Turanov</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #009688;
-      --white: #fff;
-      --black: #000;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      position: relative;
-      background-color: var(--bg);
-      color: var(--white);
-      font-family: 'Poppins', sans-serif;
-      padding: 2rem;
-      text-align: center;
-      overflow-x: hidden;
-    }
-    /* Ghosted background watermark */
-    body::before {
-      content: "Daniel Turanov";
-      position: absolute;
-      top: 40%; left: -10%;
-      font-size: 12rem;
-      color: rgba(255,255,255,0.05);
-      transform: rotate(45deg);
-      white-space: nowrap;
-    }
-    /* Wavy Logo */
-    svg { position: absolute; width: 0; height: 0; }
-    header h1 {
-      font-size: 4rem;
-      filter: url(#wave);
-      margin-bottom: 1rem;
-    }
-    /* Navigation Circles */
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
-    .nav-circle {
-      width: 100px; height: 100px;
-      border: 3px solid var(--white);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; font-weight: 600;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      background: rgba(255,255,255,0.1);
-    }
-    .nav-circle:hover { transform: scale(1.1) rotate(-5deg); }
-    /* Main reel section */
-    .main {
-      max-width: 1000px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .section-title {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
-      letter-spacing: 0.05em;
-    }
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .video-grid iframe {
-      width: 100%; height: 450px;
-      border: 5px solid var(--white);
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
-    .video-grid iframe:hover { transform: scale(1.02); }
-    .cta-button {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.8rem 1.5rem;
-      border: 2px solid var(--white);
-      border-radius: 30px;
-      text-transform: uppercase;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-    .cta-button:hover { background: rgba(255,255,255,0.2); }
-	
-	/* make all nav links stay white (or inherit) even after visit */
-.nav-circle a:link,
-.nav-circle a:visited {
-  color: inherit;       /* or explicitly “#fff” */
-  text-decoration: none;
-}
 
-/* keep hover/active the same too (optional) */
-.nav-circle a:hover,
-.nav-circle a:active {
-  color: inherit;
-  text-decoration: none;
-}
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#071416;
+      --bg2:#009688;
+      --white:#fff;
+      --muted:rgba(255,255,255,.78);
+      --line:rgba(255,255,255,.24);
+      --glass:rgba(255,255,255,.07);
+      --glass2:rgba(255,255,255,.12);
+      --shadow:0 28px 80px rgba(0,0,0,.45);
+      --glow:0 0 40px rgba(0,150,136,.35);
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      position:relative;
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(0,150,136,.36), transparent 34%),
+        radial-gradient(circle at 82% 18%, rgba(255,255,255,.10), transparent 30%),
+        radial-gradient(circle at 50% 120%, rgba(0,150,136,.22), transparent 38%),
+        linear-gradient(180deg, #071416 0%, #082022 48%, #009688 160%);
+      color:var(--white);
+      font-family:"Poppins", sans-serif;
+      padding:2rem 1.25rem 3.4rem;
+      text-align:center;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"Daniel Turanov";
+      position:fixed;
+      top:36%;
+      left:-10%;
+      font-size:clamp(4.5rem, 13vw, 13rem);
+      font-weight:800;
+      color:rgba(255,255,255,.045);
+      transform:rotate(42deg);
+      white-space:nowrap;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size:54px 54px;
+      mask-image: radial-gradient(circle at center, black, transparent 75%);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    svg#filters{
+      position:absolute;
+      width:0;
+      height:0;
+    }
+
+    header{
+      position:relative;
+      z-index:2;
+      margin:.4rem 0 1.35rem;
+    }
+
+    .logo{
+      display:inline-block;
+      font-size:clamp(2.7rem, 6vw, 4.4rem);
+      font-weight:800;
+      line-height:1;
+      letter-spacing:.02em;
+      filter:url(#wave);
+      text-shadow:
+        0 2px 0 rgba(0,0,0,.15),
+        0 20px 48px rgba(0,0,0,.45);
+      position:relative;
+    }
+
+    .logo::before{
+      content:attr(data-text);
+      position:absolute;
+      inset:0;
+      color:transparent;
+      -webkit-text-stroke:1.25px rgba(255,255,255,.58);
+      text-stroke:1.25px rgba(255,255,255,.58);
+      opacity:.55;
+      transform:translateY(1px);
+      pointer-events:none;
+    }
+
+    .logo::after{
+      content:"";
+      position:absolute;
+      left:-20%;
+      top:-30%;
+      width:140%;
+      height:160%;
+      background:radial-gradient(circle at 30% 25%, rgba(255,255,255,.18), transparent 45%);
+      mix-blend-mode:screen;
+      opacity:.65;
+      pointer-events:none;
+    }
+
+    .nav{
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      margin:1.45rem auto 2.6rem;
+      position:relative;
+      z-index:2;
+      max-width:900px;
+    }
+
+    .nav-circle{
+      width:102px;
+      height:102px;
+      border:1px solid var(--line);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(180deg, var(--glass2), var(--glass));
+      box-shadow:0 14px 38px rgba(0,0,0,.28);
+      backdrop-filter:blur(11px);
+      -webkit-backdrop-filter:blur(11px);
+      transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .nav-circle::before{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background:
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,.16), transparent 42%),
+        radial-gradient(circle at 78% 15%, rgba(0,150,136,.24), transparent 45%);
+      opacity:.9;
+      pointer-events:none;
+      transform:rotate(6deg);
+    }
+
+    .nav-circle:hover{
+      transform:scale(1.08) rotate(-2deg);
+      border-color:rgba(255,255,255,.48);
+      box-shadow:0 18px 50px rgba(0,0,0,.36), var(--glow);
+    }
+
+    .nav-circle a:link,
+    .nav-circle a:visited,
+    .nav-circle a:hover,
+    .nav-circle a:active{
+      color:var(--white);
+      text-decoration:none;
+    }
+
+    .nav-circle a{
+      font-size:.92rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.055em;
+      text-shadow:0 8px 18px rgba(0,0,0,.35);
+      position:relative;
+      z-index:1;
+    }
+
+    .main{
+      width:min(1080px, 94vw);
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+    }
+
+    .reel-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.045)),
+        rgba(0,0,0,.18);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      padding:clamp(1rem, 2.7vw, 2rem);
+    }
+
+    .reel-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255,255,255,.18), transparent 33%),
+        radial-gradient(circle at 88% 12%, rgba(0,150,136,.26), transparent 36%);
+      pointer-events:none;
+      opacity:.9;
+      z-index:0;
+    }
+
+    .reel-card::after{
+      content:"";
+      position:absolute;
+      inset:-50px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      opacity:.22;
+      pointer-events:none;
+      transform:rotate(2deg);
+      z-index:0;
+    }
+
+    .reel-copy{
+      position:relative;
+      z-index:1;
+      max-width:820px;
+      margin:0 auto 1.45rem;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.5rem;
+      font-size:.85rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-weight:700;
+      color:rgba(255,255,255,.84);
+      margin-bottom:.55rem;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after{
+      content:"";
+      width:34px;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.55));
+    }
+
+    .eyebrow::after{
+      background:linear-gradient(90deg, rgba(255,255,255,.55), transparent);
+    }
+
+    .section-title{
+      font-size:clamp(2.25rem, 5vw, 4.4rem);
+      font-weight:800;
+      letter-spacing:.035em;
+      line-height:1.03;
+      margin-bottom:.85rem;
+      text-shadow:0 18px 44px rgba(0,0,0,.38);
+    }
+
+    .reel-copy p{
+      color:var(--muted);
+      font-size:clamp(1rem, 1.8vw, 1.12rem);
+      max-width:700px;
+      margin:0 auto;
+    }
+
+    .video-shell{
+      position:relative;
+      z-index:1;
+      width:100%;
+      border-radius:22px;
+      padding:10px;
+      border:1px solid rgba(255,255,255,.25);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04)),
+        rgba(0,0,0,.26);
+      box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,.18),
+        0 20px 55px rgba(0,0,0,.42);
+    }
+
+    .video-frame{
+      position:relative;
+      width:100%;
+      aspect-ratio:16 / 9;
+      border-radius:16px;
+      overflow:hidden;
+      background:#000;
+    }
+
+    .video-frame iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+      background:#000;
+    }
+
+    .video-placeholder{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:1rem;
+      padding:1.4rem;
+      cursor:pointer;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.64)),
+        url("https://img.youtube.com/vi/-PQdmg2yhIY/maxresdefault.jpg") center / cover no-repeat;
+    }
+
+    .video-placeholder::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(255,255,255,.16), transparent 34%),
+        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55));
+      pointer-events:none;
+    }
+
+    .play-button{
+      position:relative;
+      z-index:1;
+      width:84px;
+      height:84px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.58);
+      background:rgba(255,255,255,.16);
+      display:grid;
+      place-items:center;
+      box-shadow:0 20px 45px rgba(0,0,0,.42);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      transition:transform .2s ease, background .2s ease;
+    }
+
+    .video-placeholder:hover .play-button{
+      transform:scale(1.07);
+      background:rgba(255,255,255,.24);
+    }
+
+    .play-button span{
+      display:block;
+      width:0;
+      height:0;
+      border-top:16px solid transparent;
+      border-bottom:16px solid transparent;
+      border-left:24px solid #fff;
+      margin-left:6px;
+    }
+
+    .placeholder-text{
+      position:relative;
+      z-index:1;
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      text-shadow:0 8px 18px rgba(0,0,0,.45);
+    }
+
+    .actions{
+      position:relative;
+      z-index:1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:.85rem;
+      flex-wrap:wrap;
+      margin-top:1.35rem;
+    }
+
+    .cta-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.5rem;
+      min-height:48px;
+      padding:.8rem 1.25rem;
+      border:1px solid rgba(255,255,255,.34);
+      border-radius:999px;
+      color:var(--white);
+      text-transform:uppercase;
+      font-size:.88rem;
+      letter-spacing:.07em;
+      font-weight:700;
+      text-decoration:none;
+      background:rgba(255,255,255,.08);
+      box-shadow:0 12px 30px rgba(0,0,0,.24);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      transition:transform .2s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .cta-button:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.14);
+      border-color:rgba(255,255,255,.55);
+      box-shadow:0 18px 42px rgba(0,0,0,.32), var(--glow);
+    }
+
+    .cta-button.primary{
+      background:rgba(0,150,136,.22);
+      border-color:rgba(255,255,255,.42);
+    }
+
+    .note{
+      position:relative;
+      z-index:1;
+      color:rgba(255,255,255,.66);
+      font-size:.9rem;
+      margin-top:1rem;
+    }
+
+    @media (max-width:720px){
+      body{ padding:1.55rem .85rem 2.8rem; }
+      .nav{ gap:.7rem; margin-bottom:2rem; }
+      .nav-circle{ width:88px; height:88px; }
+      .nav-circle a{ font-size:.78rem; }
+      .reel-card{ border-radius:22px; }
+      .video-shell{ padding:7px; border-radius:18px; }
+      .video-frame{ border-radius:13px; }
+      .play-button{ width:70px; height:70px; }
+      .play-button span{
+        border-top-width:13px;
+        border-bottom-width:13px;
+        border-left-width:21px;
+      }
+      .actions{ gap:.65rem; }
+      .cta-button{ width:100%; max-width:320px; }
+    }
   </style>
 </head>
+
 <body>
-  <!-- SVG Filter -->
-  <svg>
+  <svg id="filters" aria-hidden="true">
     <filter id="wave">
       <feTurbulence x="0" y="0" baseFrequency="0.01 0.05" numOctaves="3" result="warp" />
-      <feDisplacementMap in="SourceGraphic" in2="warp" scale="30" />
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="28" />
     </filter>
   </svg>
 
-  <header><h1>Daniel Turanov</h1></header>
+  <header>
+    <h1 class="logo" data-text="Daniel Turanov">Daniel Turanov</h1>
+  </header>
 
-  <nav class="nav">
-	<div class="nav-circle"><a href="index.html">Home</a></div>
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-circle"><a href="index.html">Home</a></div>
     <div class="nav-circle"><a href="headshots.html">Headshots</a></div>
     <div class="nav-circle"><a href="about.html">About</a></div>
     <div class="nav-circle"><a href="reel.html">Reel</a></div>
-	<div class="nav-circle"><a href="resume.html">Resume</a></div>
+    <div class="nav-circle"><a href="resume.html">Resume</a></div>
     <div class="nav-circle"><a href="contact.html">Contact</a></div>
   </nav>
 
   <main class="main">
-    <div class="section-title">Watch My Reel and self tapes</div>
-    <div class="video-grid">
-      <!-- Replace VIDEO_ID with your YouTube/Vimeo IDs -->
-<iframe src="https://www.youtube.com/embed/videoseries?si=8tLQhY55Nv6s1vMh&amp;list=PLoo88lSy2DKPdo-egDAySGc8LS806SUa8"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen>
-      </iframe>     
-    </div>
-    <a class="cta-button" href="full_reel.mp4" download>Download Full Reel</a>
+    <section class="reel-card" aria-label="Daniel Turanov acting reel">
+      <div class="reel-copy">
+        <div class="eyebrow">Acting Reel</div>
+        <h2 class="section-title">Watch the Reel</h2>
+        <p>
+          A focused look at my work on camera — the energy, presence, and range I’m building as an actor.
+        </p>
+      </div>
+
+      <div class="video-shell">
+        <div class="video-frame" id="videoFrame">
+          <div class="video-placeholder" id="videoPlaceholder" role="button" tabindex="0" aria-label="Play Daniel Turanov acting reel">
+            <div class="play-button" aria-hidden="true"><span></span></div>
+            <div class="placeholder-text">Play Reel</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="cta-button primary" href="https://www.youtube.com/watch?v=-PQdmg2yhIY" target="_blank" rel="noopener">
+          Open Reel on YouTube
+        </a>
+        <a class="cta-button" href="https://www.youtube.com/@DanielTuranov-1" target="_blank" rel="noopener">
+          YouTube Channel
+        </a>
+      </div>
+
+      <p class="note">Click “Play Reel” to load the video. If your browser blocks the embed, open it directly on YouTube.</p>
+    </section>
   </main>
+
+  <script>
+    const videoId = "-PQdmg2yhIY";
+    const videoFrame = document.getElementById("videoFrame");
+    const videoPlaceholder = document.getElementById("videoPlaceholder");
+
+    function loadReel(){
+      const iframe = document.createElement("iframe");
+      iframe.title = "Daniel Turanov Acting Reel";
+      iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(videoId) + "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.allowFullscreen = true;
+
+      videoFrame.innerHTML = "";
+      videoFrame.appendChild(iframe);
+    }
+
+    videoPlaceholder.addEventListener("click", loadReel);
+
+    videoPlaceholder.addEventListener("keydown", function(e){
+      if(e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        loadReel();
+      }
+    });
+  </script>
 </body>
 </html>
